@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 variable "environment" {
-  default = "demo"
+  default = "demo1"
 }
 
 resource "aws_s3_bucket" "data" {
