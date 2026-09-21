@@ -39,6 +39,18 @@ resource "aws_s3_bucket" "backups" {
   }
 }
 
+
+resource "aws_s3_bucket" "archive" {
+  bucket_prefix = "orbit-labs-archive-"
+
+  tags = {
+    name        = "Orbit Labs Archive"
+    managedBy   = "Spacelift"
+    environment = var.environment
+    cost-center = "engineering"
+  }
+}
+
 output "bucket_name" {
   value = aws_s3_bucket.data.id
 }
