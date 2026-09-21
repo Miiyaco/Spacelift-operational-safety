@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 variable "environment" {
-  default = "demo1"
+  default = "demo"
 }
 
 resource "aws_s3_bucket" "data" {
@@ -22,6 +22,17 @@ resource "aws_s3_bucket" "logs" {
 
   tags = {
     name        = "Orbit Labs Logs"
+    managedBy   = "Spacelift"
+    environment = var.environment
+    cost-center = "engineering"
+  }
+}
+
+resource "aws_s3_bucket" "backups" {
+  bucket_prefix = "orbit-labs-backups-"
+
+  tags = {
+    name        = "Orbit Labs Backups"
     managedBy   = "Spacelift"
     environment = var.environment
     cost-center = "engineering"
